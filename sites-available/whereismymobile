@@ -1,6 +1,28 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 
-	
+<Proxy balancer://cluster>
+    BalancerMember ajp://localhost:8009/ route=jvm1
+    ProxySet lbmethod=bytraffic
+    ProxySet stickysession=JSESSIONID
+</Proxy>
+ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid
+ProxyPass /balancer-manager !
+ProxyPassReverse / http://localhost/whereismymobile/
+ProxyPassReverseCookiePath / http://localhost/whereismymobile/
+
+ProxyRequests off
+<Proxy *>
+        Order deny,allow
+        Allow from all
+</Proxy>
+
+<Location /balancer-manager>
+        SetHandler balancer-manager
+
+        Order Deny,Allow
+        Deny from all
+        Allow from 127.0.0.0/255.0.0.0 ::1/128
+</Location>	
 
 </VirtualHost>
