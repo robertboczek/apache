@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-	ServerAdmin webmaster@localhost
+    ServerAdmin robertbo@gmail.com
 
 <Proxy balancer://cluster>
     BalancerMember ajp://localhost:8009/ route=jvm1
