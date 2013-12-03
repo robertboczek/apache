@@ -6,8 +6,8 @@
     ProxySet lbmethod=bytraffic
     ProxySet stickysession=JSESSIONID
 </Proxy>
-ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid
 ProxyPass /balancer-manager !
+ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid failonstatus=503
 ProxyPassReverse / http://localhost/whereismymobile/
 ProxyPassReverseCookiePath / http://localhost/whereismymobile/
 
