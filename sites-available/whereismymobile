@@ -1,9 +1,9 @@
 <VirtualHost *:80>
-    ServerAdmin robertbo@gmail.com
+    ServerAdmin robert.boczek@gmail.com
 
 <Proxy balancer://cluster>
     BalancerMember ajp://localhost:8009/ route=jvm1
-    ProxySet lbmethod=bytraffic
+    BalancerMember ajp://localhost:9009/ route=jvm2
     ProxySet stickysession=JSESSIONID
 </Proxy>
 ProxyPass /balancer-manager !
