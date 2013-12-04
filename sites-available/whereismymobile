@@ -8,8 +8,8 @@
 </Proxy>
 ProxyPass /balancer-manager !
 ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid failonstatus=503
-ProxyPassReverse / http://localhost/whereismymobile/
-ProxyPassReverseCookiePath / http://localhost/whereismymobile/
+ProxyPassReverse / http://whereismymobile.com/whereismymobile/
+ProxyPassReverseCookiePath / http://whereismymobile.com/whereismymobile/
 
 ProxyRequests off
 <Proxy *>
