@@ -2,14 +2,13 @@
     ServerAdmin robert.boczek@gmail.com
 
 <Proxy balancer://cluster>
-    BalancerMember ajp://localhost:8009/ route=jvm1
-    BalancerMember ajp://localhost:9009/ route=jvm2
-    ProxySet stickysession=JSESSIONID
+    BalancerMember ajp://localhost:8009 route=jvm1
+    BalancerMember ajp://localhost:9009 route=jvm2
 </Proxy>
 ProxyPass /balancer-manager !
-ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid failonstatus=503
-ProxyPassReverse / http://whereismymobile.com/whereismymobile/
-ProxyPassReverseCookiePath / http://whereismymobile.com/whereismymobile/
+ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid
+ProxyPassReverse / http://whereismymobile.com/whereismymobile/ stickysession=JSESSIONID|jsessionid
+ProxyPassReverseCookiePath / http://whereismymobile.com/whereismymobile/ 
 
 ProxyRequests off
 <Proxy *>
