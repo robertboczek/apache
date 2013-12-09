@@ -6,6 +6,7 @@
     BalancerMember ajp://localhost:9009 route=jvm2
 </Proxy>
 ProxyPass /balancer-manager !
+ProxyPass /resources !
 ProxyPass / balancer://cluster/whereismymobile/ stickysession=JSESSIONID|jsessionid
 ProxyPassReverse / http://whereismymobile.com/whereismymobile/ stickysession=JSESSIONID|jsessionid
 ProxyPassReverseCookiePath / http://whereismymobile.com/whereismymobile/ 
@@ -24,4 +25,11 @@ ProxyRequests off
         Allow from 127.0.0.0/255.0.0.0 ::1/128
 </Location>	
 
+DocumentRoot /var/www/
+<Directory "/var/www/">
+        Options FollowSymLinks
+        AllowOverride none 
+        Order allow,deny
+        Allow from all 
+</Directory>
 </VirtualHost>
