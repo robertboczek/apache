@@ -28,7 +28,7 @@ ProxyRequests off
 DocumentRoot /var/www/
 <Directory "/var/www/">
         Options FollowSymLinks
-        AllowOverride none 
+        AllowOverride all 
         Order allow,deny
         Allow from all 
 </Directory>
